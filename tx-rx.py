@@ -1,6 +1,7 @@
 #Author: matt ji
 #purpose: check 4g wireless signal strength
 #date: 2019/1/3
+#usage: put in rc.local python -u tx-rx.py >> log
 import serial
 import time, datetime
 import os
