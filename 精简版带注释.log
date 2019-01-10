@@ -1,0 +1,325 @@
+1. 机器人在外面，等待电梯，4g网络连接，梯控wifi未连接
+   ping外网 8.8.8.8可以ping通，梯控wifi 10.42.0.1 ping不通
+linux@linux-Swift-SF314-51:~$ ping 10.42.0.1 &
+[1] 22736
+linux@linux-Swift-SF314-51:~$ PING 10.42.0.1 (10.42.0.1) 56(84) bytes of data.
+linux@linux-Swift-SF314-51:~$ ping 8.8.8.8 &
+[2] 22739
+linux@linux-Swift-SF314-51:~$ PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=41 time=60.6 ms
+64 bytes from 8.8.8.8: icmp_seq=4 ttl=41 time=54.4 ms
+ p64 bytes from 8.8.8.8: icmp_seq=5 ttl=41 time=51.9 ms
+ytho64 bytes from 8.8.8.8: icmp_seq=6 ttl=41 time=60.6 ms
+n ct64 bytes from 8.8.8.8: icmp_seq=7 ttl=41 time=50.6 ms
+64 bytes from 8.8.8.8: icmp_seq=8 ttl=41 time=86.6 ms
+64 bytes from 8.8.8.8: icmp_seq=9 ttl=41 time=54.7 ms
+64 bytes from 8.8.8.8: icmp_seq=11 ttl=41 time=62.7 ms
+64 bytes from 8.8.8.8: icmp_seq=12 ttl=41 time=78.8 ms
+64 bytes from 8.8.8.8: icmp_seq=13 ttl=41 time=59.8 ms
+64 bytes from 8.8.8.8: icmp_seq=14 ttl=41 time=67.7 ms
+cti-elevator program began
+
+
+1.1. 4g网络连接，梯控wifi未连接
+DEVICE   TYPE      STATE         CONNECTION            
+ttyUSB0  gsm       connected     chinatel connection 1 
+wlp2s0   wifi      disconnected  --                    
+lo       loopback  unmanaged     --   
+
+1.2 路由表只有4g一个通路                 
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         10.11.162.49    0.0.0.0         UG    700    0        0 wwp0s20f0u1c2
+10.11.162.48    0.0.0.0         255.255.255.240 U     700    0        0 wwp0s20f0u1c2
+scan wifi list, need some time
+64 bytes from 8.8.8.8: icmp_seq=29 ttl=41 time=66.1 ms
+64 bytes from 8.8.8.8: icmp_seq=30 ttl=41 time=55.8 ms
+64 bytes from 8.8.8.8: icmp_seq=31 ttl=41 time=63.7 ms
+64 bytes from 8.8.8.8: icmp_seq=32 ttl=41 time=78.7 ms
+64 bytes from 8.8.8.8: icmp_seq=33 ttl=41 time=59.7 ms
+
+
+1.3 此时没有wifi信号
+no wifi signal
+64 bytes from 8.8.8.8: icmp_seq=95 ttl=41 time=59.6 ms
+DEVICE   TYPE      STATE         CONNECTION            
+ttyUSB0  gsm       connected     chinatel connection 1 
+wlp2s0   wifi      disconnected  --                    
+lo       loopback  unmanaged     --                    
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         10.11.162.49    0.0.0.0         UG    700    0        0 wwp0s20f0u1c2
+10.11.162.48    0.0.0.0         255.255.255.240 U     700    0        0 wwp0s20f0u1c2
+scan wifi list, need some time
+64 bytes from 8.8.8.8: icmp_seq=97 ttl=41 time=67.7 ms
+64 bytes from 8.8.8.8: icmp_seq=98 ttl=41 time=55.6 ms
+64 bytes from 8.8.8.8: icmp_seq=99 ttl=41 time=63.7 ms
+64 bytes from 8.8.8.8: icmp_seq=100 ttl=41 time=51.7 ms
+no wifi signal
+64 bytes from 8.8.8.8: icmp_seq=101 ttl=41 time=59.5 ms
+64 bytes from 8.8.8.8: icmp_seq=102 ttl=41 time=47.9 ms
+DEVICE   TYPE      STATE         CONNECTION            
+ttyUSB0  gsm       connected     chinatel connection 1 
+wlp2s0   wifi      disconnected  --                    
+lo       loopback  unmanaged     --                    
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         10.11.162.49    0.0.0.0         UG    700    0        0 wwp0s20f0u1c2
+10.11.162.48    0.0.0.0         255.255.255.240 U     700    0        0 wwp0s20f0u1c2
+scan wifi list, need some time
+64 bytes from 8.8.8.8: icmp_seq=103 ttl=41 time=55.9 ms
+64 bytes from 8.8.8.8: icmp_seq=104 ttl=41 time=44.7 ms
+64 bytes from 8.8.8.8: icmp_seq=105 ttl=41 time=62.7 ms
+64 bytes from 8.8.8.8: icmp_seq=106 ttl=41 time=61.7 ms
+no wifi signal
+
+           
+
+2. 这时电梯来了，检测到电梯信号是60
+wifi signal strength 60
+64 bytes from 8.8.8.8: icmp_seq=188 ttl=40 time=58.5 ms
+64 bytes from 10.42.0.1: icmp_seq=196 ttl=64 time=18.3 ms
+64 bytes from 8.8.8.8: icmp_seq=189 ttl=40 time=65.6 ms
+DEVICE   TYPE      STATE      CONNECTION            
+ttyUSB0  gsm       connected  chinatel connection 1 
+wlp2s0   wifi      connected  cti-elevator          
+lo       loopback  unmanaged  --                    
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         10.42.0.1       0.0.0.0         UG    600    0        0 wlp2s0
+0.0.0.0         10.11.162.49    0.0.0.0         UG    700    0        0 wwp0s20f0u1c2
+10.11.162.48    0.0.0.0         255.255.255.240 U     700    0        0 wwp0s20f0u1c2
+10.42.0.0       0.0.0.0         255.255.255.0   U     600    0        0 wlp2s0
+169.254.0.0     0.0.0.0         255.255.0.0     U     1000   0        0 wlp2s0
+scan wifi list, need some time
+64 bytes from 10.42.0.1: icmp_seq=197 ttl=64 time=16.1 ms
+64 bytes from 8.8.8.8: icmp_seq=190 ttl=40 time=125 ms
+64 bytes from 10.42.0.1: icmp_seq=198 ttl=64 time=47.0 ms
+64 bytes from 8.8.8.8: icmp_seq=191 ttl=40 time=214 ms
+64 bytes from 10.42.0.1: icmp_seq=199 ttl=64 time=42.5 ms
+64 bytes from 8.8.8.8: icmp_seq=192 ttl=40 time=454 ms
+64 bytes from 10.42.0.1: icmp_seq=200 ttl=64 time=80.3 ms
+64 bytes from 8.8.8.8: icmp_seq=193 ttl=40 time=281 ms
+64 bytes from 10.42.0.1: icmp_seq=201 ttl=64 time=108 ms
+wifi signal strength 100
+
+
+2.1 已经进入电梯，连接wifi
+switch to wifi
+wwp0s20f0u1c2  no wireless extensions.
+lo        no wireless extensions.
+wlp2s0    IEEE 802.11  ESSID:"cti-elevator"  
+already connect to cti wifi
+64 bytes from 8.8.8.8: icmp_seq=194 ttl=40 time=77.4 ms
+64 bytes from 10.42.0.1: icmp_seq=202 ttl=64 time=16.2 ms
+64 bytes from 8.8.8.8: icmp_seq=195 ttl=40 time=83.8 ms
+
+2.2 网络显示4g wifi都已经连接上
+DEVICE   TYPE      STATE      CONNECTION            
+ttyUSB0  gsm       connected  chinatel connection 1 
+wlp2s0   wifi      connected  cti-elevator          
+lo       loopback  unmanaged  --  
+
+2.3 路由表也显示这时wifi接口是第一优先级                  
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         10.42.0.1       0.0.0.0         UG    600    0        0 wlp2s0
+0.0.0.0         10.11.162.49    0.0.0.0         UG    700    0        0 wwp0s20f0u1c2
+10.11.162.48    0.0.0.0         255.255.255.240 U     700    0        0 wwp0s20f0u1c2
+10.42.0.0       0.0.0.0         255.255.255.0   U     600    0        0 wlp2s0
+169.254.0.0     0.0.0.0         255.255.0.0     U     1000   0        0 wlp2s0
+scan wifi list, need some time
+
+
+2.4 此时内网 外网都可以ping通
+64 bytes from 10.42.0.1: icmp_seq=203 ttl=64 time=4.43 ms
+64 bytes from 8.8.8.8: icmp_seq=196 ttl=40 time=156 ms
+64 bytes from 10.42.0.1: icmp_seq=204 ttl=64 time=12.1 ms
+64 bytes from 8.8.8.8: icmp_seq=197 ttl=40 time=251 ms
+64 bytes from 10.42.0.1: icmp_seq=205 ttl=64 time=80.2 ms
+64 bytes from 10.42.0.1: icmp_seq=206 ttl=64 time=105 ms
+64 bytes from 8.8.8.8: icmp_seq=199 ttl=40 time=312 ms
+64 bytes from 10.42.0.1: icmp_seq=207 ttl=64 time=136 ms
+wifi signal strength 100
+already connect to cti wifi
+64 bytes from 8.8.8.8: icmp_seq=200 ttl=40 time=64.5 ms
+64 bytes from 10.42.0.1: icmp_seq=208 ttl=64 time=13.7 ms
+64 bytes from 8.8.8.8: icmp_seq=201 ttl=40 time=64.6 ms
+DEVICE   TYPE      STATE      CONNECTION            
+ttyUSB0  gsm       connected  chinatel connection 1 
+wlp2s0   wifi      connected  cti-elevator          
+lo       loopback  unmanaged  --                    
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         10.42.0.1       0.0.0.0         UG    600    0        0 wlp2s0
+0.0.0.0         10.11.162.49    0.0.0.0         UG    700    0        0 wwp0s20f0u1c2
+10.11.162.48    0.0.0.0         255.255.255.240 U     700    0        0 wwp0s20f0u1c2
+10.42.0.0       0.0.0.0         255.255.255.0   U     600    0        0 wlp2s0
+169.254.0.0     0.0.0.0         255.255.0.0     U     1000   0        0 wlp2s0
+scan wifi list, need some time
+64 bytes from 10.42.0.1: icmp_seq=209 ttl=64 time=11.1 ms
+64 bytes from 8.8.8.8: icmp_seq=202 ttl=40 time=86.5 ms
+64 bytes from 10.42.0.1: icmp_seq=210 ttl=64 time=119 ms
+64 bytes from 8.8.8.8: icmp_seq=203 ttl=40 time=180 ms
+64 bytes from 10.42.0.1: icmp_seq=211 ttl=64 time=7.54 ms
+64 bytes from 8.8.8.8: icmp_seq=204 ttl=40 time=211 ms
+64 bytes from 10.42.0.1: icmp_seq=212 ttl=64 time=35.1 ms
+64 bytes from 8.8.8.8: icmp_seq=205 ttl=40 time=242 ms
+64 bytes from 10.42.0.1: icmp_seq=213 ttl=64 time=73.2 ms
+
+2.5 此时wifi 信号好
+wifi signal strength 100
+already connect to cti wifi
+64 bytes from 8.8.8.8: icmp_seq=206 ttl=40 time=76.4 ms
+64 bytes from 10.42.0.1: icmp_seq=214 ttl=64 time=11.2 ms
+DEVICE   TYPE      STATE      CONNECTION            
+ttyUSB0  gsm       connected  chinatel connection 1 
+wlp2s0   wifi      connected  cti-elevator          
+lo       loopback  unmanaged  --                    
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         10.42.0.1       0.0.0.0         UG    600    0        0 wlp2s0
+0.0.0.0         10.11.162.49    0.0.0.0         UG    700    0        0 wwp0s20f0u1c2
+10.11.162.48    0.0.0.0         255.255.255.240 U     700    0        0 wwp0s20f0u1c2
+10.42.0.0       0.0.0.0         255.255.255.0   U     600    0        0 wlp2s0
+169.254.0.0     0.0.0.0         255.255.0.0     U     1000   0        0 wlp2s0
+scan wifi list, need some time
+64 bytes from 8.8.8.8: icmp_seq=207 ttl=40 time=75.4 ms
+64 bytes from 10.42.0.1: icmp_seq=215 ttl=64 time=19.2 ms
+64 bytes from 8.8.8.8: icmp_seq=208 ttl=40 time=118 ms
+64 bytes from 10.42.0.1: icmp_seq=216 ttl=64 time=152 ms
+64 bytes from 8.8.8.8: icmp_seq=209 ttl=40 time=208 ms
+64 bytes from 10.42.0.1: icmp_seq=217 ttl=64 time=33.1 ms
+64 bytes from 10.42.0.1: icmp_seq=218 ttl=64 time=64.8 ms
+64 bytes from 8.8.8.8: icmp_seq=210 ttl=40 time=471 ms
+64 bytes from 8.8.8.8: icmp_seq=211 ttl=40 time=269 ms
+scan wifi list, need some time
+64 bytes from 10.42.0.1: icmp_seq=221 ttl=64 time=43.0 ms
+64 bytes from 8.8.8.8: icmp_seq=213 ttl=40 time=921 ms
+64 bytes from 8.8.8.8: icmp_seq=212 ttl=40 time=1949 ms
+64 bytes from 8.8.8.8: icmp_seq=214 ttl=40 time=230 ms
+64 bytes from 10.42.0.1: icmp_seq=222 ttl=64 time=81.1 ms
+64 bytes from 10.42.0.1: icmp_seq=223 ttl=64 time=5.52 ms
+64 bytes from 10.42.0.1: icmp_seq=224 ttl=64 time=4.33 ms
+64 bytes from 10.42.0.1: icmp_seq=225 ttl=64 time=11.9 ms
+64 bytes from 8.8.8.8: icmp_seq=215 ttl=40 time=2856 ms
+64 bytes from 8.8.8.8: icmp_seq=216 ttl=40 time=1905 ms
+64 bytes from 8.8.8.8: icmp_seq=217 ttl=40 time=1189 ms
+64 bytes from 8.8.8.8: icmp_seq=218 ttl=40 time=318 ms
+64 bytes from 10.42.0.1: icmp_seq=226 ttl=64 time=164 ms
+64 bytes from 8.8.8.8: icmp_seq=219 ttl=40 time=175 ms
+64 bytes from 10.42.0.1: icmp_seq=227 ttl=64 time=55.3 ms
+64 bytes from 8.8.8.8: icmp_seq=220 ttl=40 time=205 ms
+64 bytes from 10.42.0.1: icmp_seq=228 ttl=64 time=90.2 ms
+64 bytes from 10.42.0.1: icmp_seq=229 ttl=64 time=114 ms
+wifi signal strength 79
+already connect to cti wifi
+scan wifi list, need some time
+64 bytes from 8.8.8.8: icmp_seq=229 ttl=40 time=92.0 ms
+64 bytes from 10.42.0.1: icmp_seq=237 ttl=64 time=10.4 ms
+64 bytes from 8.8.8.8: icmp_seq=230 ttl=40 time=320 ms
+64 bytes from 10.42.0.1: icmp_seq=238 ttl=64 time=40.7 ms
+64 bytes from 8.8.8.8: icmp_seq=231 ttl=40 time=206 ms
+64 bytes from 10.42.0.1: icmp_seq=239 ttl=64 time=121 ms
+64 bytes from 8.8.8.8: icmp_seq=232 ttl=40 time=236 ms
+
+3. 此时离开电梯，wifi信号减弱
+wifi signal strength 50
+wifi signal is bad
+
+3.1 切换到4g，断开wifi cti-elevator
+switch to 4g
+wlp2s0    IEEE 802.11  ESSID:"cti-elevator"  
+disconnect cti-elevator first
+64 bytes from 10.42.0.1: icmp_seq=241 ttl=64 time=126 ms
+Device 'wlp2s0' successfully disconnected.
+
+3.2 此时4g一直都是在线的，所以不需要重新连接
+4g is already connected
+64 bytes from 8.8.8.8: icmp_seq=235 ttl=41 time=128 ms
+DEVICE   TYPE      STATE         CONNECTION            
+ttyUSB0  gsm       connected     chinatel connection 1 
+wlp2s0   wifi      disconnected  --                    
+lo       loopback  unmanaged     --                    
+Kernel IP routing table
+
+3.3 路由表又只剩下4g
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         10.11.162.49    0.0.0.0         UG    700    0        0 wwp0s20f0u1c2
+10.11.162.48    0.0.0.0         255.255.255.240 U     700    0        0 wwp0s20f0u1c2
+scan wifi list, need some time
+wlp2s0    Interface doesn't support scanning : Device or resource busy
+64 bytes from 8.8.8.8: icmp_seq=236 ttl=41 time=59.0 ms
+
+3.4 此时wifi信号很弱了，内网10.42.0.1已经ping不通了，外网8.8.8.8依然是通的
+wifi signal strength 35
+wifi signal is bad
+64 bytes from 8.8.8.8: icmp_seq=237 ttl=41 time=58.4 ms
+DEVICE   TYPE      STATE         CONNECTION            
+ttyUSB0  gsm       connected     chinatel connection 1 
+wlp2s0   wifi      disconnected  --                    
+lo       loopback  unmanaged     --                    
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         10.11.162.49    0.0.0.0         UG    700    0        0 wwp0s20f0u1c2
+10.11.162.48    0.0.0.0         255.255.255.240 U     700    0        0 wwp0s20f0u1c2
+scan wifi list, need some time
+wlp2s0    Interface doesn't support scanning : Device or resource busy
+64 bytes from 8.8.8.8: icmp_seq=238 ttl=41 time=74.9 ms
+wifi signal strength 35
+wifi signal is bad
+64 bytes from 8.8.8.8: icmp_seq=239 ttl=41 time=56.0 ms
+DEVICE   TYPE      STATE         CONNECTION            
+ttyUSB0  gsm       connected     chinatel connection 1 
+wlp2s0   wifi      disconnected  --                    
+lo       loopback  unmanaged     --                    
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         10.11.162.49    0.0.0.0         UG    700    0        0 wwp0s20f0u1c2
+10.11.162.48    0.0.0.0         255.255.255.240 U     700    0        0 wwp0s20f0u1c2
+scan wifi list, need some time
+64 bytes from 8.8.8.8: icmp_seq=240 ttl=41 time=55.0 ms
+64 bytes from 8.8.8.8: icmp_seq=241 ttl=41 time=54.0 ms
+64 bytes from 8.8.8.8: icmp_seq=242 ttl=41 time=52.7 ms
+64 bytes from 8.8.8.8: icmp_seq=243 ttl=41 time=50.9 ms
+64 bytes from 8.8.8.8: icmp_seq=244 ttl=41 time=49.8 ms
+
+
+3.5 此时已经完全没有wifi信号
+no wifi signal
+64 bytes from 8.8.8.8: icmp_seq=275 ttl=41 time=104 ms
+DEVICE   TYPE      STATE         CONNECTION            
+ttyUSB0  gsm       connected     chinatel connection 1 
+wlp2s0   wifi      disconnected  --                    
+lo       loopback  unmanaged     --                    
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         10.11.162.49    0.0.0.0         UG    700    0        0 wwp0s20f0u1c2
+10.11.162.48    0.0.0.0         255.255.255.240 U     700    0        0 wwp0s20f0u1c2
+scan wifi list, need some time
+64 bytes from 8.8.8.8: icmp_seq=277 ttl=41 time=77.3 ms
+64 bytes from 8.8.8.8: icmp_seq=278 ttl=41 time=196 ms
+64 bytes from 8.8.8.8: icmp_seq=279 ttl=41 time=62.9 ms
+64 bytes from 8.8.8.8: icmp_seq=280 ttl=41 time=63.1 ms
+64 bytes from 8.8.8.8: icmp_seq=281 ttl=41 time=43.9 ms
+no wifi signal
+64 bytes from 8.8.8.8: icmp_seq=282 ttl=41 time=61.8 ms
+DEVICE   TYPE      STATE         CONNECTION            
+ttyUSB0  gsm       connected     chinatel connection 1 
+wlp2s0   wifi      disconnected  --                    
+lo       loopback  unmanaged     --                    
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         10.11.162.49    0.0.0.0         UG    700    0        0 wwp0s20f0u1c2
+10.11.162.48    0.0.0.0         255.255.255.240 U     700    0        0 wwp0s20f0u1c2
+scan wifi list, need some time
+64 bytes from 8.8.8.8: icmp_seq=283 ttl=41 time=68.2 ms
+64 bytes from 8.8.8.8: icmp_seq=284 ttl=41 time=76.8 ms
+64 bytes from 8.8.8.8: icmp_seq=285 ttl=41 time=64.9 ms
+64 bytes from 8.8.8.8: icmp_seq=286 ttl=41 time=92.3 ms
+64 bytes from 8.8.8.8: icmp_seq=287 ttl=41 time=84.7 ms
+no wifi signal
+64 bytes from 8.8.8.8: icmp_seq=288 ttl=41 time=71.1 ms
+64 bytes from 8.8.8.8: icmp_seq=289 ttl=41 time=49.8 ms
+no wifi signal
+
