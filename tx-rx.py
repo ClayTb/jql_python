@@ -10,7 +10,7 @@ import os
 import json, sys
 import threading    
 import serial, json
-import time, sys
+from time import sleep
 ser = None
 exitFlag = 0
 
