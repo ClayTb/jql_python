@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import os, sys
 
-#sshpass -p ctibr01 scp -P 16101  cti@frp.ctirobot.com:tikong/2019-04-04-11:07:07.log .
-#sshpass -p ctibr01 ssh -p 16101  cti@frp.ctirobot.com
+#取log：sshpass -p ctibr01 scp -P 16101  cti@frp.ctirobot.com:tikong/2019-04-04-11:07:07.log .
+#登录：sshpass -p ctibr01 ssh -p 16101  cti@frp.ctirobot.com
 
 def main():
     if (len(sys.argv) < 2):
