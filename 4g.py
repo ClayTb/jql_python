@@ -10,14 +10,16 @@ import json, sys
 #ser = serial.Serial("/dev/ttyUSB0", 115200, timeout=3)
 #ser = serial.Serial(sys.argv[1], 9600)
 print("check 4g wireless strength\n")
-ser = serial.Serial("/dev/ttyUSB2", 9600, timeout=3)
+ser = serial.Serial(port="/dev/ttyUSB0", baudrate=115200, exclusive= True,timeout=3)
 while True:
     ser.write('AT+CSQ\r\n')
     #ser.write("AT\r\n")
     #print("write(AT+CSQ)")
     buffer = ser.readline()
     buffer = ser.readline()
+    #buffer = ser.read()
     if buffer:
+        print buffer        
         if buffer[0] == '+':
             now = datetime.datetime.now()
             print("%s %s" % (now.strftime("%Y-%m-%d %H:%M:%S"), buffer))
