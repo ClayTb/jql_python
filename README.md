@@ -8,3 +8,4 @@
 6. rx-tx.py 一个线程专门收数据，另外可以捕获键盘输入，q两个线程都退出  
 7. subprocess-test: 是两个线程，一个线程使用subprocess来监听mosquitto的topic，并且使用select poll来实现非阻塞读  
 8. tx-file.py:  一边通过串口接收数据，一边通过串口发送文件  
+scpupdate: 批量上传文件scp  
