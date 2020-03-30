@@ -1,7 +1,9 @@
+# -*- coding: utf-8 -*-
 #Author: matt ji
 #purpose: check 4g wireless signal strength
 #date: 2019/1/3
-#usage: python ./4g.py
+#usage:sudo  python ./4g.py
+#2020-3-30: 测试信号质量的时候，需要断网，不能同时使用
 import serial
 import time
 from datetime import datetime
@@ -18,7 +20,7 @@ def check():
     global exitFlag
     logging.basicConfig(filename=datetime.now().strftime('%Y-%m-%d-%I:%M:%S.log'),level = logging.INFO,format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     logger = logging.getLogger(__name__)
-    print("check 4g wireless strength")
+    print("check 4g wireless strength, 输入q停止")
     os.system('service ModemManager stop')
     dbmDict = {'2':'-109','3':'-107','4':'-105','5':'-103','6':'-101','7':'-99','8':'-97','9':'-95','10':'-93','11':'-91','12':'-89','13':'-87','14':'-85','15':'-83','16':'-81','17':'-79','18':'-77','19':'-75','20':'-73','21':'-71','22':'-69','23':'-67','24':'-65','25':'-63','26':'-61','27':'-59','28':'-57','29':'-55','30':'-53'}
     ser = serial.Serial(port="/dev/ttyUSB0", baudrate=115200, exclusive= True,timeout=3)
